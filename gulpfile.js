@@ -6,6 +6,8 @@ const sass = require("gulp-sass"), cssnano = require("gulp-cssnano");
 
 const browserSync = require('browser-sync').create();
 
+var commonjs = require("gulp-commonjs-module");
+
 
 // Save a reference to the `reload` method
 
@@ -37,13 +39,22 @@ gulp.task("scripts", function () {
         .pipe(gulp.dest("./build/js")); // Where do we put the result?
 });
 
+gulp.task("modules", function () {
+  return gulp
+    .src("./modules/*.js") // What files do we want gulp to consume?
+    .pipe(commonjs({prefix: "_my_commonjs_"}))
+    .pipe(terser()) // Call the terser function on these files
+    .pipe(rename({ extname: ".min.js" })) // Rename the uglified file
+    .pipe(gulp.dest("./build/js")); // Where do we put the result?
+});
+
 gulp.task("reload", function (done) {
     browserSync.reload();
     done();
 });
 
 gulp.task("watch", function() {
-  gulp.watch("js/*.js", gulp.series("lint", "scripts", "reload"));
+  gulp.watch("js/*.js", gulp.series("lint", "scripts", "modules", "reload"));
   gulp.watch("sass/*.scss", gulp.series("sass", "reload"));
   gulp.watch("index.html", gulp.series("reload"));
 });
