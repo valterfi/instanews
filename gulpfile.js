@@ -6,8 +6,13 @@ const sass = require("gulp-sass"), cssnano = require("gulp-cssnano");
 
 const browserSync = require('browser-sync').create();
 
-const commonjs = require("gulp-commonjs-module");
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const streamify = require('gulp-streamify');
 
+//const uglify = require('gulp-uglify');
+
+let uglify = require('gulp-uglify-es').default;
 
 // Save a reference to the `reload` method
 
@@ -30,13 +35,16 @@ gulp.task("sass", function () {
   .pipe(gulp.dest("./build/css"));
 });
 
-gulp.task("scripts", function () {
-      return gulp
-        .src("./js/*.js") // What files do we want gulp to consume?
-        .pipe(commonjs(/*{prefix: "_my_commonjs_"}*/))
-        .pipe(terser()) // Call the terser function on these files
-        .pipe(rename({ extname: ".min.js" })) // Rename the uglified file
-        .pipe(gulp.dest("./build/js")); // Where do we put the result?
+gulp.task('scripts', function() {
+  return browserify("./js/index.js")
+      .bundle()
+      //Pass desired output filename to vinyl-source-stream
+      .pipe(source('bundle.js'))
+      //.pipe(streamify(terser()))
+      .pipe(streamify(uglify()))
+      .pipe(rename({ extname: ".min.js" }))
+      // Start piping stream to tasks!
+      .pipe(gulp.dest('./build/js'));
 });
 
 gulp.task("reload", function (done) {

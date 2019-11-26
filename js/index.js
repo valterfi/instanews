@@ -1,21 +1,12 @@
+let envModule = require('./modules/env.js');
+
 $(function () {
 
-    let env;
-    $.getJSON('env.json', function (data) {
-        env = data;
-    })
-        .always(function () {
-            main();
-        });
-        
+    envModule = new envModule();
+    envModule.start(main);
 
-    function main() {
-
-        var math = require("./modules/a.js").math;
-        console.log(math.findSum(1, 2)); //3
-        console.log(math.findSub(1, 2)); //-1
-
-        console.log(env.NY_API_KEY);
+    function main(env) {
+        console.log("teste: " + env.NY_API_KEY);
     }
 
 });
