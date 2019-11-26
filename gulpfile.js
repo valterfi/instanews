@@ -6,7 +6,7 @@ const sass = require("gulp-sass"), cssnano = require("gulp-cssnano");
 
 const browserSync = require('browser-sync').create();
 
-var commonjs = require("gulp-commonjs-module");
+const commonjs = require("gulp-commonjs-module");
 
 
 // Save a reference to the `reload` method
@@ -25,7 +25,6 @@ gulp.task("sass", function () {
   return gulp
   .src("./sass/*.scss")
   .pipe(sass())
-  .pipe(gulp.dest("./build/css"))
   .pipe(cssnano())
   .pipe(rename("style.min.css"))
   .pipe(gulp.dest("./build/css"));
@@ -34,18 +33,10 @@ gulp.task("sass", function () {
 gulp.task("scripts", function () {
       return gulp
         .src("./js/*.js") // What files do we want gulp to consume?
+        .pipe(commonjs(/*{prefix: "_my_commonjs_"}*/))
         .pipe(terser()) // Call the terser function on these files
         .pipe(rename({ extname: ".min.js" })) // Rename the uglified file
         .pipe(gulp.dest("./build/js")); // Where do we put the result?
-});
-
-gulp.task("modules", function () {
-  return gulp
-    .src("./modules/*.js") // What files do we want gulp to consume?
-    .pipe(commonjs({prefix: "_my_commonjs_"}))
-    .pipe(terser()) // Call the terser function on these files
-    .pipe(rename({ extname: ".min.js" })) // Rename the uglified file
-    .pipe(gulp.dest("./build/js")); // Where do we put the result?
 });
 
 gulp.task("reload", function (done) {
@@ -54,7 +45,7 @@ gulp.task("reload", function (done) {
 });
 
 gulp.task("watch", function() {
-  gulp.watch("js/*.js", gulp.series("lint", "scripts", "modules", "reload"));
+  gulp.watch("js/*.js", gulp.series("lint", "scripts", "reload"));
   gulp.watch("sass/*.scss", gulp.series("sass", "reload"));
   gulp.watch("index.html", gulp.series("reload"));
 });
@@ -67,9 +58,4 @@ gulp.task("lint", function () {
     .pipe(eslint.failAfterError());
 });
 
-/* gulp.task("test", function (done) {
-    console.log("Test!");
-    done();
-}); */
-
-gulp.task("default", gulp.parallel("lint", "browser-sync", "watch"));
+gulp.task("default", gulp.parallel("lint", "scripts", "sass", "browser-sync", "watch"));
