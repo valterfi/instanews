@@ -1,5 +1,61 @@
+// Tablet
+$screen-tablet: 600px;
+
+// Desktop
+$screen-desktop: 1240px;
+
+
+// Tablet devices
+@mixin tablet {
+    @media (min-width: #{$screen-tablet}) {
+        @content;
+    }
+ }
+ 
+ // Desktop devices
+ @mixin desktop {
+    @media (min-width: #{$screen-desktop}) {
+        @content;
+    }
+ }
+
 $color-var: green;
 
 h1 {
     color: $color-var;
 }
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    background-color: yellow;
+    color: #444;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+  
+
+@include tablet {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    h1 {
+        color: red;
+    }
+}
+
+@include desktop {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
