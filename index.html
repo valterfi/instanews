@@ -10,19 +10,33 @@
 </head>
 
 <body>
-    <h1>Instanews</h1>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="./build/js/bundle.min.js"></script>
 
-    <div class="container">
+    <header>
+        <div class="choose-section">
+            <img class="ny-logo" src="assets/images/nyt-logo.svg" alt="New York Times Logo">
+            <div class="dropdown">
+                <label for="sections">Choose a section:</label>
+                <select id="sections">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <section class="container">
         <div class="box a">A</div>
         <div class="box b">B</div>
         <div class="box c">C</div>
         <div class="box d">D</div>
         <div class="box e">E</div>
         <div class="box f">F</div>
-    </div>
+    </section>
 
 </body>
 

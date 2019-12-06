@@ -19,26 +19,55 @@ $screen-desktop: 1240px;
     }
  }
 
-$color-var: green;
+body {
+    background-color: black;
+}
 
-h1 {
-    color: $color-var;
+label {
+    color: white;
+}
+
+.ny-logo {
+    height: 140px;
+}
+
+header {
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.choose-section {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 200px;
+    //background-color: yellow;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 65px;
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
-    background-color: yellow;
     color: #444;
 }
 
 .box {
     background-color: #444;
     color: #fff;
-    border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+    height: 320px;
 }
   
 
