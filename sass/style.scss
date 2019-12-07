@@ -69,21 +69,45 @@ header {
     font-size: 150%;
     height: 320px;
 }
+
+footer {
+    display: flex;
+    justify-content: center; 
+}
+
+footer p {
+    color: white;
+}
   
 
 @include tablet {
+    .ny-logo {
+        height: 54px;
+    }
+
     .container {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    h1 {
-        color: red;
+    .choose-section {
+        width: 260px;
+        height: 100px;
+        flex-direction: row;
+        align-items: center;
     }
 }
 
 @include desktop {
     .container {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .choose-section {
+        margin-left: initial;
+    }
+
+    footer {
+        justify-content: flex-start; 
     }
 }
 
