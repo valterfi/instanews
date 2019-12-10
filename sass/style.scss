@@ -59,12 +59,11 @@ header {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
-    color: #444;
 }
 
 .box {
     background-color: #444;
-    color: #fff;
+    border: 1px solid red;
     padding: 20px;
     font-size: 150%;
     height: 320px;
@@ -82,7 +81,9 @@ footer p {
 
 @include tablet {
     .ny-logo {
-        height: 54px;
+        height: 78px;
+        position: relative;
+        top: 0.5rem;
     }
 
     .container {
@@ -90,10 +91,14 @@ footer p {
     }
 
     .choose-section {
-        width: 260px;
+        width: 360px;
         height: 100px;
         flex-direction: row;
         align-items: center;
+    }
+
+    .dropdown {
+        align-items: flex-start;
     }
 }
 
