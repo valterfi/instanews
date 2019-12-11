@@ -15,7 +15,6 @@ $(function () {
             .always(function (data) {
                 let array = data.results;
 
-
                 for (let index = 0; index < array.length; index++) {
                     //     $('<div class="box"> ' + array[index].item_type + '  </div>').appendTo('.container');
                     let link = $('<a></a>')

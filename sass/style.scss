@@ -62,9 +62,10 @@ header {
 }
 
 .box {
+    display: table-cell;
+    vertical-align: bottom;
     background-color: #444;
     border: 1px solid red;
-    //padding: 20px;
     font-size: 150%;
     height: 480px;
 }
@@ -84,6 +85,9 @@ a:link {
 }
 
 .box p {
+    margin: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: white;
     background-color: rgba(black, 0.5);
 }
