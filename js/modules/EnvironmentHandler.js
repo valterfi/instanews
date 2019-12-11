@@ -1,4 +1,4 @@
-class envModule {
+export default class EnvironmentHandler {
     constructor() {
         this.start = function (callback) {
             $.getJSON('env.json')
@@ -8,5 +8,3 @@ class envModule {
         };
     }
 }
-
-module.exports = envModule;

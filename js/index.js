@@ -1,8 +1,10 @@
-let envModule = require('./modules/env.js');
+import EnvironmentHandler from './modules/EnvironmentHandler';
+
+let envModule = new EnvironmentHandler();
 
 $(function () {
 
-    envModule = new envModule();
+    //envModule = new envModule();
     envModule.start(main);
 
     function main(env) {

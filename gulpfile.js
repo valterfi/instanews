@@ -1,6 +1,6 @@
 const gulp = require("gulp"); // Load Gulp!
 // Now that we've installed the terser package we can require it:
-const terser = require("gulp-terser"), rename = require("gulp-rename"), eslint = require("gulp-eslint");
+const rename = require("gulp-rename"), eslint = require("gulp-eslint");
 
 const sass = require("gulp-sass"), cssnano = require("gulp-cssnano");
 
@@ -10,33 +10,30 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const streamify = require('gulp-streamify');
 
-//const uglify = require('gulp-uglify');
-
-let uglify = require('gulp-uglify-es').default;
-
-// Save a reference to the `reload` method
+const uglify = require('gulp-uglify-es').default;
 
 // Watch scss AND html files, doing different things with each.
 gulp.task('browser-sync', function () {
   // Serve files from the root of this project
   browserSync.init({
-      server: {
-          baseDir: "./"
-      }
+    server: {
+      baseDir: "./"
+    }
   });
 });
 
 gulp.task("sass", function () {
   return gulp
-  .src("./sass/*.scss")
-  .pipe(sass())
-  .pipe(cssnano())
-  .pipe(rename("style.min.css"))
-  .pipe(gulp.dest("./build/css"));
+    .src("./sass/*.scss")
+    .pipe(sass())
+    .pipe(cssnano())
+    .pipe(rename("style.min.css"))
+    .pipe(gulp.dest("./build/css"));
 });
 
 gulp.task('scripts', function() {
   return browserify("./js/index.js")
+      .transform("babelify", { presets: ["@babel/env"] })
       .bundle()
       //Pass desired output filename to vinyl-source-stream
       .pipe(source('bundle.js'))
@@ -48,11 +45,11 @@ gulp.task('scripts', function() {
 });
 
 gulp.task("reload", function (done) {
-    browserSync.reload();
-    done();
+  browserSync.reload();
+  done();
 });
 
-gulp.task("watch", function() {
+gulp.task("watch", function () {
   gulp.watch("js/*.js", gulp.series("lint", "scripts", "reload"));
   gulp.watch("sass/*.scss", gulp.series("sass", "reload"));
   gulp.watch("index.html", gulp.series("reload"));
@@ -66,4 +63,6 @@ gulp.task("lint", function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task("default", gulp.parallel("lint", "scripts", "sass", "browser-sync", "watch"));
+gulp.task("setup", gulp.series("scripts", "sass", "browser-sync"));
+
+gulp.task("default", gulp.parallel("lint", "setup", "watch"));
