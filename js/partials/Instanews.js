@@ -1,5 +1,6 @@
-import UrlBuilder from "./UrlBuilder";
-import Transformer from "./Transformer";
+import UrlBuilder from './UrlBuilder';
+import Transformer from './Transformer';
+import { NY_API_TOP_STORIES_SECTIONS } from '../settings'
 
 export default class Instanews {
 
@@ -8,18 +9,20 @@ export default class Instanews {
     }
 
     run() {
-
-        let section = 'home';
-        let url = this.urlBuilder.buildTopStories(section);
-
-        this.processTopStories(url); //temporary
-
-        this.configSelectionChange();
-
+        this.configSelect(NY_API_TOP_STORIES_SECTIONS);
     }
 
-    configSelectionChange() {
+    configSelect(sections) {
+        sections.forEach(function (section) {
+            $('.dropdown select')
+                .append(`<option value="${section.toLowerCase()}">${section}</option>`);
+        });
 
+        $('.dropdown select').on('change', (event) => {
+            let url = this.urlBuilder.buildTopStories(event.target.value);
+            this.clean();
+            this.processTopStories(url);
+        });
     }
 
     processTopStories(url) {
@@ -33,5 +36,9 @@ export default class Instanews {
                     element.appendTo('.container');
                 });
             });
+    }
+
+    clean() {
+        $('.container').empty();
     }
 }

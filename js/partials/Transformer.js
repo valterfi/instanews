@@ -1,4 +1,4 @@
-import Story from "./Story";
+import Story from './Story';
 
 export default class Transformer {
 
@@ -19,8 +19,6 @@ export default class Transformer {
 
             stories.push(story);
         });
-
-        console.log(stories);
 
         return stories;
     }

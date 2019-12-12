@@ -1,1 +1,3 @@
 export const NY_API_TOP_STORIES_URL = 'https://api.nytimes.com/svc/topstories/v2/';
+
+export const NY_API_TOP_STORIES_SECTIONS = ['Arts', 'Automobiles', 'Books', 'Business', 'Fashion', 'Food', 'Health', 'Home', 'Insider', 'Magazine', 'Movies', 'National', 'Nyregion', 'Obituaries', 'Opinion', 'Politics', 'Realestate', 'Science', 'Sports', 'Sundayreview', 'Technology', 'Theater', 'Tmagazine', 'Travel', 'Upshot', 'World'];

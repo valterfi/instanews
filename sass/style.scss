@@ -58,14 +58,12 @@ header {
 .container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    //grid-gap: 10px;
 }
 
 .box {
     display: table-cell;
     vertical-align: bottom;
     background-color: #444;
-    //border: 1px solid red;
     font-size: 150%;
     height: 480px;
 }
