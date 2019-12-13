@@ -19,9 +19,11 @@ export default class Instanews {
         });
 
         $('.dropdown select').on('change', (event) => {
-            let url = this.urlBuilder.buildTopStories(event.target.value);
-            this.clean();
-            this.processTopStories(url);
+            if (event.target.value !== '') {
+                let url = this.urlBuilder.buildTopStories(event.target.value);
+                this.clean();
+                this.processTopStories(url);
+            }
         });
     }
 
