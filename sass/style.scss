@@ -54,6 +54,15 @@ $screen-tablet: 600px;
 // Desktop
 $screen-desktop: 1240px;
 
+// COLORS
+
+$footerColor: #c2c2c2;
+$textColor: #ffffff;
+
+// FONT
+
+$fonts: 'Open Sans';
+
 
 // Tablet devices
 @mixin tablet {
@@ -76,6 +85,7 @@ $screen-desktop: 1240px;
 html, body {
     height: 100%;
     width: 100%;
+    color: $textColor;
 }
 
 html {
@@ -88,11 +98,10 @@ body {
     display: table-cell;
     vertical-align: middle;
     background-color: black;
+    font-family: $fonts, sans-serif;
 }
 
-label {
-    color: white;
-}
+
 
 .loading {
     background: url('../../assets/images/ajax-loader.gif') no-repeat center center;
@@ -146,13 +155,9 @@ header {
 }
 
 label {
-    font-family: 'Open Sans', Arial, sans-serif;
     font-weight: bold;
 }
 
-select {
-    font-family: 'Open Sans', Arial, sans-serif;
-}
 
 .container {
     display: grid;
@@ -169,7 +174,6 @@ select {
         padding-bottom: 10px;
         color: white;
         background-color: transparent(black);
-        font-family: 'Open Sans', Arial, sans-serif;
     }
 }
 
@@ -196,8 +200,7 @@ footer {
 
 footer p {
     margin-top: 2rem;
-    font-family: 'Open Sans', Arial, sans-serif;
-    color: #c2c2c2;
+    color: $footerColor;
 }
   
 
