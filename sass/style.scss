@@ -54,6 +54,11 @@ $screen-tablet: 600px;
 // Desktop
 $screen-desktop: 1240px;
 
+// COLORS
+
+$footerColor: #c2c2c2;
+$textColor: #ffffff;
+
 
 // Tablet devices
 @mixin tablet {
@@ -86,7 +91,7 @@ body {
 }
 
 label {
-    color: white;
+    color: $textColor;
 }
 
 .loading {
@@ -192,7 +197,7 @@ footer {
 footer p {
     margin-top: 2rem;
     font-family: 'Open Sans', Arial, sans-serif;
-    color: white;
+    color: $footerColor;
 }
   
 
