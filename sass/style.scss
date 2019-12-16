@@ -89,6 +89,18 @@ label {
     color: white;
 }
 
+.loading {
+    background: url('../../assets/images/ajax-loader.gif') no-repeat center center;
+    background-color: rgba(white, 0.5);
+    background-size: 10%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999999;
+}
+
 .ny-logo-start {
     height:185px;
     transition: all 0.5s ease-in-out 0.1s;

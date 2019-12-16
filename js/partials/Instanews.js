@@ -9,6 +9,7 @@ export default class Instanews {
     }
 
     run() {
+        $('.loading').hide();
         this.configSelect(NY_API_TOP_STORIES_SECTIONS);
     }
 
@@ -20,10 +21,10 @@ export default class Instanews {
 
         $('.dropdown select').selectmenu({
             width: 150
-          });
+        });
 
         $('.dropdown select').selectmenu({
-            change: ( event, ui ) => {
+            change: (event) => {
                 this.clean();
                 if (event.target.value !== '') {
                     let url = this.urlBuilder.buildTopStories(event.target.value);
@@ -31,25 +32,29 @@ export default class Instanews {
                 } else {
                     $('img').removeClass('ny-logo').addClass('ny-logo-start');
                     $('.choose-section-after-search').removeClass('choose-section-after-search').addClass('choose-section');
-                } 
+                }
             }
-          });
-        
-    }
-    
-    processTopStories(url) {
-        $.getJSON(url)
-        .always(function (data) {
-            $('img').removeClass('ny-logo-start').addClass('ny-logo');
-            $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
-            let transformer = new Transformer(data.results);
-            let stories = transformer.transform();
-            
-            stories.forEach(function (story) {
-                let element = story.createElement();
-                element.appendTo('.container');
-            });
         });
+
+    }
+
+    processTopStories(url) {
+        $('.loading').show();
+        $.getJSON(url, function () {
+            $('.loading').css('display', 'initial');
+        })
+            .always(function (data) {
+                $('img').removeClass('ny-logo-start').addClass('ny-logo');
+                $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
+                let transformer = new Transformer(data.results);
+                let stories = transformer.transform();
+
+                stories.forEach(function (story) {
+                    let element = story.createElement();
+                    element.appendTo('.container');
+                });
+                $('.loading').hide();
+            });
     }
 
     clean() {
