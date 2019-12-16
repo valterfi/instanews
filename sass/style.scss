@@ -63,11 +63,15 @@ $screen-desktop: 1240px;
  }
  
  // Desktop devices
- @mixin desktop {
+@mixin desktop {
     @media (min-width: #{$screen-desktop}) {
         @content;
     }
- }
+}
+
+@function transparent($color) {
+    @return rgba($color, 0.5);
+}
 
 html, body {
     height: 100%;
@@ -92,7 +96,7 @@ label {
 
 .loading {
     background: url('../../assets/images/ajax-loader.gif') no-repeat center center;
-    background-color: rgba(white, 0.5);
+    background-color: transparent(white);
     background-size: 10%;
     position: absolute;
     top: 0;
@@ -164,7 +168,7 @@ select {
         padding-top: 10px;
         padding-bottom: 10px;
         color: white;
-        background-color: rgba(black, 0.5);
+        background-color: transparent(black);
         font-family: 'Open Sans', Arial, sans-serif;
     }
 }

@@ -44,15 +44,17 @@ export default class Instanews {
             $('.loading').css('display', 'initial');
         })
             .always(function (data) {
-                $('img').removeClass('ny-logo-start').addClass('ny-logo');
-                $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
-                let transformer = new Transformer(data.results);
-                let stories = transformer.transform();
+                if (data.status === 'OK') {
+                    $('img').removeClass('ny-logo-start').addClass('ny-logo');
+                    $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
+                    let transformer = new Transformer(data.results);
+                    let stories = transformer.transform();
 
-                stories.forEach(function (story) {
-                    let element = story.createElement();
-                    element.appendTo('.container');
-                });
+                    stories.forEach(function (story) {
+                        let element = story.createElement();
+                        element.appendTo('.container');
+                    });
+                }
                 $('.loading').hide();
             });
     }
