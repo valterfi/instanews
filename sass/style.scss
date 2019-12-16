@@ -81,6 +81,7 @@ $fonts: 'Open Sans';
 html, body {
     height: 100%;
     width: 100%;
+    color: $textColor;
 }
 
 html {
@@ -95,9 +96,7 @@ body {
     font-family: $fonts, sans-serif;
 }
 
-label {
-    color: $textColor;
-}
+
 
 .loading {
     background: url('../../assets/images/ajax-loader.gif') no-repeat center center;
@@ -154,8 +153,6 @@ label {
     font-weight: bold;
 }
 
-select {
-}
 
 .container {
     display: grid;
