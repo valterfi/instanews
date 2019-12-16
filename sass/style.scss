@@ -59,6 +59,10 @@ $screen-desktop: 1240px;
 $footerColor: #c2c2c2;
 $textColor: #ffffff;
 
+// FONT
+
+$fonts: 'Open Sans';
+
 
 // Tablet devices
 @mixin tablet {
@@ -88,6 +92,7 @@ body {
     display: table-cell;
     vertical-align: middle;
     background-color: black;
+    font-family: $fonts, sans-serif;
 }
 
 label {
@@ -146,12 +151,10 @@ header {
 }
 
 label {
-    font-family: 'Open Sans', Arial, sans-serif;
     font-weight: bold;
 }
 
 select {
-    font-family: 'Open Sans', Arial, sans-serif;
 }
 
 .container {
@@ -169,7 +172,7 @@ select {
         padding-bottom: 10px;
         color: white;
         background-color: rgba(black, 0.5);
-        font-family: 'Open Sans', Arial, sans-serif;
+
     }
 }
 
@@ -196,7 +199,6 @@ footer {
 
 footer p {
     margin-top: 2rem;
-    font-family: 'Open Sans', Arial, sans-serif;
     color: $footerColor;
 }
   
