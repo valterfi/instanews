@@ -1,3 +1,5 @@
+@import './cssreset.scss';
+
 @font-face {
     font-family: 'Open Sans';
     src: url('../../assets/fonts/OpenSansLight-Italic.eot');
@@ -67,7 +69,19 @@ $screen-desktop: 1240px;
     }
  }
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
 body {
+    display: table-cell;
+    vertical-align: middle;
     background-color: black;
 }
 
@@ -75,8 +89,14 @@ label {
     color: white;
 }
 
+.ny-logo-start {
+    height:185px;
+    transition: all 0.5s ease-in-out 0.1s;
+}
+
 .ny-logo {
     height: 140px;
+    transition: all 0.5s ease-in-out 0.1s;
 }
 
 header {
@@ -87,12 +107,17 @@ header {
 .choose-section {
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 75%;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 200px;
-    //background-color: yellow;
+    height: 250px;
+    transition: all 0.5s ease-in-out 0.1s;
+}
+
+.choose-section-after-search {
+    @extend .choose-section;
+    transition: all 0.5s ease-in-out 0.1s;
 }
 
 .dropdown {
@@ -120,38 +145,32 @@ select {
 .box {
     display: table-cell;
     vertical-align: bottom;
-    background-color: #444;
-    font-size: 150%;
     height: 480px;
-    width: 1%;
+    p {
+        margin: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: white;
+        background-color: rgba(black, 0.5);
+        font-family: 'Open Sans', Arial, sans-serif;
+    }
 }
 
-.box p {
-    font-family: 'Open Sans', Arial, sans-serif;
-}
-
-.imageBox {
-    background: url("https://static01.nyt.com/images/2019/12/09/nyregion/09dc-impeach-promo/merlin_165695310_79c00bce-e754-4d54-a3e5-17577d30914f-superJumbo.jpg") center center/cover no-repeat;
+a:hover {
+    transform: scale(1.1);
+    border-radius: 5%;;
+    .box {
+        transition: all 0.5s ease-in-out 0.1s;
+        p {
+            font-size: 1.5rem;
+            transition: all 0.5s ease-in-out 0.1s;
+        }
+    }
 }
 
 a:link {
     text-decoration: none;
 }
-
-.box a {
-    display:inline-block;
-    width:100%;
-    height:100%;
-}
-
-.box p {
-    margin: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    background-color: rgba(black, 0.5);
-}
-
 
 footer {
     display: flex;
@@ -159,6 +178,7 @@ footer {
 }
 
 footer p {
+    margin-top: 2rem;
     font-family: 'Open Sans', Arial, sans-serif;
     color: white;
 }
@@ -177,9 +197,13 @@ footer p {
 
     .choose-section {
         width: 360px;
-        height: 100px;
+        height: 130px;
         flex-direction: row;
         align-items: center;
+    }
+
+    .choose-section-after-search {
+        margin-left: initial;
     }
 
     .dropdown {
@@ -193,11 +217,20 @@ footer p {
     }
 
     .choose-section {
+        width: 470px;
         margin-left: initial;
     }
 
     footer {
         justify-content: flex-start; 
+    }
+
+    html {
+        margin: initial;
+    }
+
+    body {
+        padding-left: 30px;
     }
 }
 

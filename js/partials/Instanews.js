@@ -18,26 +18,38 @@ export default class Instanews {
                 .append(`<option value="${section.toLowerCase()}">${section}</option>`);
         });
 
-        $('.dropdown select').on('change', (event) => {
-            if (event.target.value !== '') {
-                let url = this.urlBuilder.buildTopStories(event.target.value);
-                this.clean();
-                this.processTopStories(url);
-            }
-        });
-    }
+        $('.dropdown select').selectmenu({
+            width: 150
+          });
 
+        $('.dropdown select').selectmenu({
+            change: ( event, ui ) => {
+                this.clean();
+                if (event.target.value !== '') {
+                    let url = this.urlBuilder.buildTopStories(event.target.value);
+                    this.processTopStories(url);
+                } else {
+                    $('img').removeClass('ny-logo').addClass('ny-logo-start');
+                    $('.choose-section-after-search').removeClass('choose-section-after-search').addClass('choose-section');
+                } 
+            }
+          });
+        
+    }
+    
     processTopStories(url) {
         $.getJSON(url)
-            .always(function (data) {
-                let transformer = new Transformer(data.results);
-                let stories = transformer.transform();
-
-                stories.forEach(function (story) {
-                    let element = story.createElement();
-                    element.appendTo('.container');
-                });
+        .always(function (data) {
+            $('img').removeClass('ny-logo-start').addClass('ny-logo');
+            $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
+            let transformer = new Transformer(data.results);
+            let stories = transformer.transform();
+            
+            stories.forEach(function (story) {
+                let element = story.createElement();
+                element.appendTo('.container');
             });
+        });
     }
 
     clean() {

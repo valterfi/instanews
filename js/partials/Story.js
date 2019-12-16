@@ -12,11 +12,11 @@ export default class Story {
 
     createElement() {
         let element = $('<a></a>')
+            .css('background', this.createBackgroundValue())
             .attr('href', this.url);
 
         let div = $('<div></div>')
             .addClass('box')
-            .css('background', this.createBackgroundValue())
             .appendTo(element);
 
         $('<p></p>')
