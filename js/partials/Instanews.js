@@ -46,17 +46,23 @@ export default class Instanews {
             .always(function (data) {
                 if (data.status === 'OK') {
                     $('img').removeClass('ny-logo-start').addClass('ny-logo');
-                    $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
-                    let transformer = new Transformer(data.results);
+                    $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search'); 
+                    let allNews = data.results;
+                    let selected = allNews.slice(0, 12);
+                    let transformer = new Transformer(selected);
                     let stories = transformer.transform();
-
+                    
                     stories.forEach(function (story) {
                         let element = story.createElement();
                         element.appendTo('.container');
                     });
-                }
-                $('.loading').hide();
-            });
+                    $('.loading').hide();
+                }  
+            })
+            .fail(function() {
+                alert( "Failure try again" );
+                location.reload();
+          })
     }
 
     clean() {
