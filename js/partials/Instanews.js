@@ -57,9 +57,12 @@ export default class Instanews {
                         element.appendTo('.container');
                     });
                     $('.loading').hide();
-                }
-                
-            });
+                }  
+            })
+            .fail(function() {
+                alert( "Failure try again" );
+                location.reload();
+          })
     }
 
     clean() {
