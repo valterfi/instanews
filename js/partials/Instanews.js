@@ -47,7 +47,7 @@ export default class Instanews {
                 if (data.status === 'OK') {
                     $('img').removeClass('ny-logo-start').addClass('ny-logo');
                     $('.choose-section').removeClass('choose-section').addClass('choose-section-after-search');
-                    let transformer = new Transformer(data.results);
+                    let transformer = new Transformer(data.results.slice(0, 12));
                     let stories = transformer.transform();
 
                     stories.forEach(function (story) {
